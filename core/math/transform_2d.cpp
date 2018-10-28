@@ -51,6 +51,8 @@ void Transform2D::affine_invert() {
 	ERR_FAIL_COND(det == 0);
 #endif
 	real_t idet = 1.0 / det;
+    int significant_bits = 1000000;
+    idet = ((idet*significant_bits)+0.5)/significant_bits;
 
 	SWAP(elements[0][0], elements[1][1]);
 	elements[0] *= Vector2(idet, -idet);
